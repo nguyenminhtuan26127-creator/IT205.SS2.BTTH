@@ -5,29 +5,29 @@ number_of_sick_days = int(input("Nhập vào số ngày bị bệnh: "))
 body_temperature = float(input("Nhập vào nhiệt độ cơ thể(\u00B0C): "))
 examination_costs = int(input("Nhập vào chi phí khám: "))
 
-valid = 1
+valid = True
 
 if name_pateint == "":
-    valid = 0
+    valid = False
     print("Tên bệnh nhân không được để trống!")
 
-if year_of_birth > 1900 and year_of_birth < 2026:
-    valid = 0
+if year_of_birth < 1900 or year_of_birth > 2026:
+    valid = False
     print("Năm sinh không hợp lệ!")
 
-if number_of_sick_days >= 0:
-    valid = 0
+if number_of_sick_days < 0:
+    valid = False
     print("Số ngày bệnh không phù hợp!")
 
-if body_temperature >= 30 and body_temperature <= 45:
-    valid = 0
+if body_temperature < 30 or body_temperature > 45:
+    valid = False
     print("Nhiệt độ cơ thể không hợp lý!")
 
-if examination_costs > 0:
-    valid = 0
+if examination_costs <= 0:
+    valid = False
     print("Chi phí khám không đúng!")
 
-if valid == 0:
+if  not valid:
     print("Thoát chương trình...")
     exit()
 else:
@@ -37,7 +37,7 @@ else:
     # Trạng thái bệnh
     status = ""
     if body_temperature > 38 and number_of_sick_days > 3:
-        status = "Nguy Hiểm"
+        status = "Nguy hiểm"
     elif body_temperature > 38:
         status = "Sốt cao"
     elif body_temperature > 37.5:
